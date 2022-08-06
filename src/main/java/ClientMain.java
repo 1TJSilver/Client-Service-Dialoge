@@ -9,11 +9,12 @@ public class ClientMain {
     public static void main(String[] args) {
         String host = "netology.homework";
         int port = 8765;
-        try (Socket client = new Socket(host, port)){
-            Scanner scanner = new Scanner(System.in);
-            PrintWriter writer = new PrintWriter(client.getOutputStream(), true);
-            BufferedReader reader =
-                    new BufferedReader(new InputStreamReader(client.getInputStream()));
+        try (Socket client = new Socket(host, port)
+             ;Scanner scanner = new Scanner(System.in);
+             PrintWriter writer = new PrintWriter(client.getOutputStream(), true);
+             BufferedReader reader =
+                     new BufferedReader(new InputStreamReader(client.getInputStream()))){
+
             System.out.println(reader.readLine());
             writer.println(scanner.nextLine());
             System.out.println(reader.readLine());
