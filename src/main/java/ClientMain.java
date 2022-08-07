@@ -15,19 +15,11 @@ public class ClientMain {
              BufferedReader reader =
                      new BufferedReader(new InputStreamReader(client.getInputStream()))){
 
-            System.out.println(reader.readLine());
-            writer.println(scanner.nextLine());
-            System.out.println(reader.readLine());
-            System.out.println(reader.readLine());
-            writer.println(scanner.nextLine());
-            System.out.println(reader.readLine());
-            System.out.println(reader.readLine());
-            writer.println(scanner.nextLine());
-            System.out.println(reader.readLine());
-            System.out.println(reader.readLine());
-            writer.println(scanner.nextLine());
-            System.out.println(reader.readLine());
-            System.out.println(reader.readLine());
+            for(int i = 0; i < 5; i++){
+                System.out.println(reader.readLine());
+                writer.println(scanner.nextLine());
+                System.out.println(reader.readLine());
+            }
 
         } catch (IOException ex){
             System.out.println(ex.getMessage());

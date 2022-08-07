@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -21,43 +18,36 @@ public class ServerMain {
                     writer.println("Hello, what's your name?");
                     String name = reader.readLine();
                     writer.println("Hello, " + name);
-                    writer.println("Do you like listening a rock?(Yes/No)");
-                    String result = reader.readLine();
-                    if (result.equals("Yes")) {
-                        writer.println("YEEEAAAA, ROOOCK!!!");
-                    } else if (result.equals("No")) {
-                        writer.println("It's sad");
-                    } else {
-                        System.out.println("I don't understand you :|");
-                    }
-                    writer.println("Are you kid?(Yes/No)");
-                    result = reader.readLine();
-                    switch (result) {
-                        case "Yes":
-                            writer.println("Go do homework");
-                            break;
-                        case "No":
-                            writer.println("Go work");
-                            break;
-                        default:
-                            System.out.println("I don't understand you :|");
-                    }
-                    writer.println("Do you like pizza?(Yes/No)");
-                    result = reader.readLine();
-                    switch (result) {
-                        case "Yes":
-                            writer.println("I like too");
-                            break;
-                        case "No":
-                            writer.println("WHYYY?!");
-                            break;
-                        default:
-                            System.out.println("I don't understand you :|");
-                    }
+                    askClient("Do you like listening a rock?", "YEEEAAAA, ROOOCK!!!"
+                    , "It's sad", writer, reader);
+                    askClient("Are you kid?", "Go do homework", "Go work",
+                            writer, reader);
+                    askClient("Do you like pizza?", "I like too", "WHYYY?!",
+                            writer, reader);
+
                     writer.println("Bye bye, " + name);
                 } catch (IOException ex){
                     System.out.println(ex.getMessage());
                 }
+            }
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    public static void askClient(String ask, String trueResult, String falseResult,
+                                 PrintWriter writer, BufferedReader reader){
+        try {
+            writer.println(ask + " (Yes/No)");
+            String result = reader.readLine();
+            switch (result) {
+                case "Yes":
+                    writer.println(trueResult);
+                    break;
+                case "No":
+                    writer.println(falseResult);
+                    break;
+                default:
+                    writer.println("I don't understand you");
             }
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
